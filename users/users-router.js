@@ -3,7 +3,8 @@ const jwt = require("jsonwebtoken");
 
 const router = require("express").Router();
 const Users = require("./users-model");
-// IMPORT AUTHENTICATOR (MAYBE)
+const restricted = require("./users-authentication"); //NOT BEING USED ATM
+const {validateUser, validateUserId, validateLogin} = require("../middleware/index");
 
 /*
 .then(response => {
@@ -24,7 +25,19 @@ router.get("/", (req, res) => {
     })
 })
 
-router.post("/register", (req, res) => {
+router.get("/:id", validateUserId, (req, res) => {
+    const {id} = req.params;
+
+    Users.findBy(id)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        res.status(500).json({ errorMessage: error });
+    })
+})
+
+router.post("/register", validateUser, (req, res) => {
     const user = req.body;
     const rounds = process.env.BCRYPT_ROUNDS || 8;
 
@@ -40,7 +53,7 @@ router.post("/register", (req, res) => {
     })
 })
 
-router.post("/login", (req, res) => {
+router.post("/login", validateLogin, (req, res) => {
     const {username, password} = req.body;
 
     Users.findByUsers({username})
