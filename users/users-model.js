@@ -5,6 +5,8 @@ module.exports = {
     register,
     findBy,
     findByUsers,
+    editUser,
+    deleteUser,
 }  
 
 function getAll() {
@@ -29,4 +31,16 @@ function findByUsers(filter) {
     return db("users")
     .where(filter)
     .orderBy("id")
+}
+
+function editUser(changes, id) {
+    return db("users")
+    .where({id})
+    .update(changes)
+}deleteUser
+
+function deleteUser(id) {
+    return db("users")
+    .where({id})
+    .del()
 }

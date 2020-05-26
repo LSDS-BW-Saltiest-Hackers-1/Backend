@@ -64,8 +64,33 @@ router.post("/login", validateLogin, (req, res) => {
 
             res.status(200).json({ message: "Welcome to our API", token });
         } else {
-            res.status(401).json({ message: "Invalid credentials" });
+            res.status(401).json({ message: "Access Denied: Unauthorized" });
         }
+    })
+})
+
+router.put("/:id", (req, res) => {
+    const {id} = req.params;
+    const changes = req.body;
+
+    Users.editUser(changes, id)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        res.status(500).json({ errorMessage: error });
+    })
+})
+
+router.delete("/:id", (req, res) => {
+    const {id} = req.params;
+
+    Users.deleteUser(id)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        res.status(500).json({ errorMessage: error });
     })
 })
 
