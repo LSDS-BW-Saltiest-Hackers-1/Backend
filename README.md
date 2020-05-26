@@ -1,4 +1,4 @@
-# Saltiest Hackkers API
+# Saltiest Hackers API
 https://saltiest-hacker-bw.herokuapp.com/
 
 # User Routes
