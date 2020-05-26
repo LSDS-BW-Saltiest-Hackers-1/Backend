@@ -21,6 +21,7 @@ function register(user) {
 
 function findBy(id) {
     return db("users")
+    .select("id", "first_name", "last_name", "username")
     .where({ id })
 }
 

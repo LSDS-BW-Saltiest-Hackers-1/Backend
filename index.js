@@ -7,5 +7,5 @@ server.listen(Port, () => {
 })
 
 server.get("/", (req, res) => {
-    res.json({ message: "Hello from /GET!" });
+    res.json({ message: "Welcome!" });
 })
