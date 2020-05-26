@@ -111,6 +111,7 @@ URL: /api/users/login
   "errorMessage": "Server error information"
 }
 ```
+*** ***
 
 ### GET ALL USERS (UNRESTRICTED)
 HTTP Request: GET
