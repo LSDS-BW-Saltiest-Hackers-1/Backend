@@ -17,6 +17,6 @@ module.exports = (req, res , next) => {
             }
         })
     } else {
-        res.status(400).json({ message: "Access denied" });
+        res.status(400).json({ message: "Not logged in, cannot access." });
     }
 }
