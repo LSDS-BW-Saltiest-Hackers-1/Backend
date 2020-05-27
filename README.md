@@ -15,6 +15,7 @@ URL: /api/users/register
 | First Name  | String  | Yes       | User first name                                         |
 | Last Name   | String  | Yes       | User last name                                          |
 | Username    | String  | Yes       | Username, must be unique                                |
+| Password    | String  | Yes       | Password                                                |
 
 ##### Example
 ```javascript
