@@ -69,25 +69,28 @@ router.post("/login", validateLogin, (req, res) => {
     })
 })
 
-router.put("/:id", (req, res) => {
+router.put("/:id", validateUser, validateUserId, (req, res) => {
     const {id} = req.params;
     const changes = req.body;
 
     Users.editUser(changes, id)
-    .then(response => {
-        res.status(200).json(response);
+    .then(() => {
+        Users.findBy(id)
+        .then(response => {
+            res.status(200).json(response);
+        })
     })
     .catch(error => {
         res.status(500).json({ errorMessage: error });
     })
 })
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", validateUserId, (req, res) => {
     const {id} = req.params;
 
     Users.deleteUser(id)
     .then(response => {
-        res.status(200).json(response);
+        res.status(200).json({ message: "The user was successfully deleted!" });
     })
     .catch(error => {
         res.status(500).json({ errorMessage: error });

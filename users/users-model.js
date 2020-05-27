@@ -37,7 +37,7 @@ function editUser(changes, id) {
     return db("users")
     .where({id})
     .update(changes)
-}deleteUser
+}
 
 function deleteUser(id) {
     return db("users")
