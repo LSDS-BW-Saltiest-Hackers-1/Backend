@@ -54,5 +54,17 @@ router.delete("/:id/remove/:comment_id", (req, res) => {
     })
 })
 
+router.get("/:id/favList", (req, res) => {
+    const {id} = req.params;
+
+    Comments.getLikedComments(id)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        res.status(500).json({ errorMessage: error });
+    })
+})
+
 
 module.exports = router;
