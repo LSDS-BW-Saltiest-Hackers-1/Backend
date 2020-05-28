@@ -27,9 +27,9 @@ router.get("/:id/favorites", (req, res) => {
     })
 })
 
-router.post("/:id", (req, res) => {
+router.post("/:id/:favorite_comments", (req, res) => {
     const {id} = req.params;
-    const {favorite_comments} = req.body;
+    const {favorite_comments} = req.params;
 
     Comments.addComment(id, favorite_comments)  
     .then(([response]) => {

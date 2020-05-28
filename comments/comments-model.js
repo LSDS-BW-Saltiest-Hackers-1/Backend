@@ -5,7 +5,7 @@ module.exports = {
     findLast,
     findComment,
     add,
-    joinTables,
+    // joinTables,
     addComment,
     findBy,
     remove1,
@@ -34,25 +34,25 @@ function findComment(id) {
     .where({id})
 }
 
-function add(id, comment) {
-    console.log("THIS IS COMMENT", comment)
+function add(id, favorite_comments) {
+    console.log("THIS IS COMMENT", favorite_comments)
     return db("comments")
-    .insert({"favorite_comments": `${comment.favorite_comments}`, "user_id": `${id}`})
+    .insert({"favorite_comments": `${favorite_comments}`, "user_id": `${id}`})
     .then(id => {
         return findComment(id[0])
     })
 }
 
-function joinTables(id) {
-    return db("users_comments")
-    .select("favorite_comments")
-    .join("users as U", "U.id", "UC.user_id")
-    .join("comments as C", "C.id", "UC.comments_id")
-    .where("U.id", "=", `${id}`)
-}
+// function joinTables(id) {
+//     return db("users_comments")
+//     .select("favorite_comments")
+//     .join("users as U", "U.id", "UC.user_id")
+//     .join("comments as C", "C.id", "UC.comments_id")
+//     .where("U.id", "=", `${id}`)
+// }
 
-function addComment(id, comment) {
-    return add(id, comment)
+function addComment(id, favorite_comments) {
+    return add(id, favorite_comments)
     .then(([response]) => {
         /* console.log(response) EXAMPLE DATA: { id: 13, favorite_comments: 333 } */
         return db("users_comments as UC")
