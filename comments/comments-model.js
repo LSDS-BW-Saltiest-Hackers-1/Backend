@@ -85,10 +85,3 @@ function remove1(id, favorite_comments) {
         })
     })
 }
-
-/*
-
-DELETE FROM comments
-WHERE comments.id = 1
-
-*/
