@@ -26,6 +26,18 @@ router.get("/:id/favorites", (req, res) => {
     })
 })
 
+router.get("/:id/favList", (req, res) => {
+    const {id} = req.params;
+
+    Comments.getLikedComments(id)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        res.status(500).json({ errorMessage: error });
+    })
+})
+
 router.post("/:id/:favorite_comments", (req, res) => {
     const {id} = req.params;
     const {favorite_comments} = req.params;
@@ -52,18 +64,5 @@ router.delete("/:id/remove/:comment_id", (req, res) => {
         res.status(500).json({ errorMessage: error });
     })
 })
-
-router.get("/:id/favList", (req, res) => {
-    const {id} = req.params;
-
-    Comments.getLikedComments(id)
-    .then(response => {
-        res.status(200).json(response);
-    })
-    .catch(error => {
-        res.status(500).json({ errorMessage: error });
-    })
-})
-
 
 module.exports = router;
