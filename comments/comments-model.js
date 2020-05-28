@@ -5,6 +5,7 @@ module.exports = {
     findLast,
     findComment,
     add,
+    joinTables,
     addComment,
     findBy,
     remove1,
@@ -41,16 +42,23 @@ function add(id, comment) {
     })
 }
 
+function joinTables(id) {
+    return db("users_comments")
+    .select("favorite_comments")
+    .join("users as U", "U.id", "UC.user_id")
+    .join("comments as C", "C.id", "UC.comments_id")
+    .where("U.id", "=", `${id}`)
+}
+
 function addComment(id, comment) {
     return add(id, comment)
     .then(([response]) => {
         /* console.log(response) EXAMPLE DATA: { id: 13, favorite_comments: 333 } */
         return db("users_comments as UC")
-        .select("favorite_comments")
-        .join("users as U", "U.id", "UC.user_id")
-        .join("comments as C", "C.id", "UC.comments_id")
-        .where("U.id", "=", `${id}`)
         .insert({user_id: id, comments_id: response.id})
+        .then(response => {
+            return joinTables(id)
+        })
     })
 }
 
