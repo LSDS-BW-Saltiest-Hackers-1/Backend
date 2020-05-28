@@ -9,36 +9,36 @@ exports.up = function(knex) {
         users.string("username", 255).notNullable().unique()
         users.string("password", 255).notNullable()
     })
-    .createTable("posts", posts => {
-        posts.increments();
+    .createTable("comments", comments => {
+        comments.increments();
 
-        posts.string("title", 255).notNullable()
-        posts.string("post", 2000).notNullable()
+        comments.integer("favorite_comments").notNullable()
+        comments.integer("user_id").notNullable()
     })
-    .createTable("users_posts", users_posts => {
-        users_posts.increments();
+    .createTable("users_comments", users_comments => {
+        users_comments.increments();
 
-        users_posts.integer("user_id")
+        users_comments.integer("user_id")
         .unsigned()
         .notNullable()
         .references("id")
         .inTable("users")
         .onUpdate("CASCADE") // RESTRICT, DO NOTHING, SET NULL, CASCADE
-        .onDelete("RESTRICT")
+        .onDelete("CASCADE")
 
-        users_posts.integer("posts_id")
+        users_comments.integer("comments_id")
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("posts")
+        .inTable("comments")
         .onUpdate("CASCADE") // RESTRICT, DO NOTHING, SET NULL, CASCADE
-        .onDelete("RESTRICT")
+        .onDelete("CASCADE")
     })
 };
 
 exports.down = function(knex) {
   return knex.schema
-  .dropTableIfExists("users_posts")
-  .dropTableIfExists("posts")
+  .dropTableIfExists("users_comments")
+  .dropTableIfExists("comments")
   .dropTableIfExists("users")
 };

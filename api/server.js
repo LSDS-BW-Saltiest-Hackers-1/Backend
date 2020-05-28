@@ -4,7 +4,7 @@ const helmet = require("helmet");
 
 // ADD MIDDLEWARE REQUIRE IN THIS LINE!
 const usersRouter = require("../users/users-router");
-const postsRouter = require("../posts/posts-router");
+const commentsRouter = require("../comments/comments-router");
 
 const server = express();
 
@@ -13,6 +13,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use("/api/users", usersRouter);
-server.use("/api/posts", /*ADD AUTHENTICATOR HERE */ postsRouter);
+server.use("/api/comments", /*ADD AUTHENTICATOR HERE */ commentsRouter);
+
 
 module.exports = server;

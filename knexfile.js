@@ -1,10 +1,10 @@
-const pgConnection = process.env.DATABASE_URL || "postgresql://postgres@localhost/users";
+const pgConnection = process.env.DATABASE_URL || "postgresql://postgres@localhost/trolls";
 
 module.exports = {
   development: {
     client: "sqlite3",
     connection: {
-      filename: "./database/users.db3",
+      filename: "./database/trolls.db3",
     },
     useNullAsDefault: true,
     migrations: {
