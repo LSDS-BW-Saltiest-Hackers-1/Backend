@@ -19,7 +19,6 @@ router.get("/:id/favorites", (req, res) => {
 
     Comments.getComments(id)
     .then(response => {
-        // console.log(response);
         res.status(200).json(response);
     })
     .catch(error => {
@@ -31,7 +30,7 @@ router.post("/:id/:favorite_comments", (req, res) => {
     const {id} = req.params;
     const {favorite_comments} = req.params;
 
-    Comments.addComment(id, favorite_comments)  
+    Comments.add(id, favorite_comments)  
     .then(([response]) => {
         console.log("REsponso", response)
         res.status(201).json(response);
@@ -45,9 +44,8 @@ router.delete("/:id/remove/:comment_id", (req, res) => {
     const {id} = req.params;
     const {comment_id} = req.params;
 
-    Comments.remove1(id, comment_id)
+    Comments.remove2(id, comment_id)
     .then(response => {
-        // console.log(response) // Just gives back number of things deleted
         res.status(200).json(response)
     })
     .catch(error => {
