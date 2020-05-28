@@ -11,6 +11,7 @@ module.exports = {
     remove1,
     findIfTrue,
     remove2,
+    getLikedComments,
 }
 
 function getComments(id) {
@@ -56,9 +57,9 @@ function addComment(id, comment) {
         /* console.log(response) EXAMPLE DATA: { id: 13, favorite_comments: 333 } */
         return db("users_comments as UC")
         .insert({user_id: id, comments_id: response.id})
-        .then(response => {
-            return joinTables(id)
-        })
+        // .then(response => {
+        //     return joinTables(id)
+        // })
     })
 }
 
@@ -92,4 +93,10 @@ function remove1(id, favorite_comments) {
             return remove2(id, res.favorite_comments) 
         })
     })
+}
+
+function getLikedComments(id) {
+    return db("comments")
+    .select("favorite_comments")
+    .where({user_id: id})
 }
