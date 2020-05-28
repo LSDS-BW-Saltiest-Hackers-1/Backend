@@ -29,10 +29,11 @@ router.get("/:id/favorites", (req, res) => {
 
 router.post("/:id", (req, res) => {
     const {id} = req.params;
-    const comment = req.body;
+    const {favorite_comments} = req.body;
 
-    Comments.addComment(id, comment)  
-    .then(response => {
+    Comments.addComment(id, favorite_comments)  
+    .then(([response]) => {
+        console.log("REsponso", response)
         res.status(201).json(response);
     })
     .catch(error => {
