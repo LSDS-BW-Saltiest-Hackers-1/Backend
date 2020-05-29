@@ -205,12 +205,6 @@ URL: /api/users/:id
 }
 ```
 *** ***
-
-
-
-
-
-
 ### UPDATE USER INFORMATION
 HTTP Request: PUT
 
@@ -275,11 +269,6 @@ URL: /api/users/:id
   "error": "Server error information"
 }
 ```
-
-
-
-
-
 *** ***
 ### DELETE A USER
 HTTP Request: DELETE
@@ -326,4 +315,90 @@ URL: /api/users/:id
   "message": "Server failed to remove the user"
   "error": "Server error information"
 }
+*** ***
 
+
+
+# Favorite Comment Routes
+
+### GET A USER'S FAVORITE COMMENTS (UNRESTRICTED)
+HTTP Request: GET
+
+URL: /api/comments/:id/favorites
+
+#### Response
+##### 200 (OK)
+> Will receive a 200 response with an array of object(s) for comments
+```javascript
+[
+    {
+        "favorite_comments": 1
+    },
+    {
+        "favorite_comments": 2
+    },
+    {
+        "favorite_comments": 777
+    }
+]
+```
+```
+##### 500 (Internal Server Error)
+> Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The user information could not be retrieved",
+  "error": "Server error information"
+}
+```
+*** ***
+### ADD A COMMENT TO A USER'S FAVORITE LIST (UNRESTRICTED)
+HTTP Request: POST
+
+URL: /api/comments/:id/add/:favorite_comments
+
+##### Body
+| Name        | Type    | Required  | Description                                             |
+| ----------- | ------- | --------- | ------------------------------------------------------  |
+| Nothing     | Null    | No        | To add a favorite comment to a user add the user's id in the first paramater, and the comment's ID as the second parameter.|
+
+#### Response
+##### 201 (OK)
+> Will receive a 201 response with an object for the comment added
+```javascript
+{
+    "id": 5,
+    "favorite_comments": 777,
+    "user_id": 1
+}
+```
+```
+##### 500 (Internal Server Error)
+> Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "Server could not add comment due to location error",
+  "error": "Server error information"
+}
+```
+*** ***
+### DELETE A COMMENT
+HTTP Request: DELETE
+
+URL: /api/comments/:id/remove/:comment_id
+
+#### Response
+##### 200 (OK)
+```javascript
+{
+    message: "The comment was successfully deleted"
+}
+
+```
+##### 500 (Internal Server Error)
+> Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "Server failed to remove the issue"
+  "error": "Server error information"
+}
