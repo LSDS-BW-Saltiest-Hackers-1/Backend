@@ -13,7 +13,6 @@ exports.up = function(knex) {
         comments.increments();
 
         comments.integer("favorite_comments").notNullable()
-        comments.integer("user_id").notNullable()
         comments.integer("user_id")
         .unsigned()
         .notNullable()
@@ -22,7 +21,7 @@ exports.up = function(knex) {
         .onUpdate("CASCADE") // RESTRICT, DO NOTHING, SET NULL, CASCADE
         .onDelete("CASCADE")
     })
-    
+
     // .createTable("users_comments", users_comments => {
     //     users_comments.increments();
 
