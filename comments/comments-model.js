@@ -9,6 +9,7 @@ module.exports = {
 
 function findComment(id) {
     return db("comments")
+    .select("favorite_comments")
     .where({id})
 }
 
