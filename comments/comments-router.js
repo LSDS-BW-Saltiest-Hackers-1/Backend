@@ -38,7 +38,7 @@ router.get("/:id/favList", (req, res) => {
     })
 })
 
-router.post("/:id/:favorite_comments", (req, res) => {
+router.post("/:id/add/:favorite_comments", (req, res) => {
     const {id} = req.params;
     const {favorite_comments} = req.params;
 
