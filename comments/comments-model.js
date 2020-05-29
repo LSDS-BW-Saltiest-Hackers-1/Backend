@@ -1,19 +1,10 @@
 const db = require("../database/dbConfig");
 
 module.exports = {
-    getComments,
     findComment,
     add,
     remove2,
     getLikedComments,
-}
-
-function getComments(id) {
-    return db("users_comments as uc")
-    .join("users as u", "u.id", "uc.user_id")
-    .join("comments as c", "c.id", "uc.comments_id")
-    .where("u.id", "=", `${id}`)
-    .select("c.favorite_comments")
 }
 
 function findComment(id) {
