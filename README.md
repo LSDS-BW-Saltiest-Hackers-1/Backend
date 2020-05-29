@@ -315,6 +315,7 @@ URL: /api/users/:id
   "message": "Server failed to remove the user"
   "error": "Server error information"
 }
+```
 *** ***
 
 
