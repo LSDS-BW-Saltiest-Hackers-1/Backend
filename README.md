@@ -372,7 +372,6 @@ URL: /api/comments/:id/add/:favorite_comments
     "user_id": 1
 }
 ```
-```
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
 ```javascript
