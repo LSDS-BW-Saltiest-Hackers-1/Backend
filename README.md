@@ -322,7 +322,7 @@ URL: /api/users/:id
 
 # Favorite Comment Routes
 
-### GET A USER'S FAVORITE COMMENTS (UNRESTRICTED)
+### GET A USER'S FAVORITE COMMENTS LIST (UNRESTRICTED)
 HTTP Request: GET
 
 URL: /api/comments/:id/favorites
