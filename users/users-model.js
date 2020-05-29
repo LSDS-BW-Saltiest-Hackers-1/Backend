@@ -40,7 +40,6 @@ function editUser(changes, id) {
 }
 
 function deleteUser(id) {
-    console.log("THIS IS ID!", {id})
     return db("users")
     .where({id})
     .del()
