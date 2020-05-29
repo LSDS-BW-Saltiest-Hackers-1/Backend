@@ -24,7 +24,7 @@ function findComment(id) {
 function add(id, favorite_comments) {
     console.log("THIS IS COMMENT", favorite_comments)
     return db("comments")
-    .insert({"favorite_comments": `${favorite_comments}`, "user_id": `${id}`})
+    .insert({"favorite_comments": favorite_comments, "user_id": id})
     .then(([id]) => {
         return findComment(id)
     })
