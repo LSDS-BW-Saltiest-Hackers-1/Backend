@@ -343,7 +343,6 @@ URL: /api/comments/:id/favorites
     }
 ]
 ```
-```
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
 ```javascript
